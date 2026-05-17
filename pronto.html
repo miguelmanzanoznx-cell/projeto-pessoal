@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio - Miguel Manzano</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --bg: #050816;
+      --card: #0b1120;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --text: #ffffff;
+      --gray: #9ca3af;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(5, 8, 22, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue-light);
+    }
+
+    .menu {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .menu a:hover {
+      color: var(--blue-light);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 120px;
+      background:
+      radial-gradient(circle at top right, rgba(37,99,235,0.2), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(59,130,246,0.15), transparent 30%),
+      var(--bg);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      color: var(--blue-light);
+      margin-bottom: 10px;
+    }
+
+    .hero-text h1 {
+      font-size: 58px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 0 20px rgba(37,99,235,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--blue-light);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue-light);
+      color: var(--blue-light);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 30px;
+      border: 2px solid rgba(59,130,246,0.2);
+      box-shadow: 0 0 40px rgba(37,99,235,0.3);
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: 38px;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 60%;
+      height: 4px;
+      background: var(--blue);
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 999px;
+    }
+
+    .about p {
+      max-width: 700px;
+      color: var(--gray);
+      line-height: 1.9;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(59,130,246,0.4);
+      box-shadow: 0 0 25px rgba(37,99,235,0.15);
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      border-radius: 999px;
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--gray);
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: var(--blue-light);
+      font-weight: 600;
+    }
+
+    .goal-item {
+      text-align: center;
+    }
+
+    .goal-item h3 {
+      margin-bottom: 10px;
+    }
+
+    .goal-item p {
+      color: var(--gray);
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .socials {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      padding: 14px 22px;
+      border-radius: 14px;
+      background: var(--card);
+      color: white;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: var(--blue);
+      transform: translateY(-4px);
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: var(--gray);
+      border-top: 1px solid var(--border);
+    }
+
+    @media(max-width: 768px) {
+      .menu {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">MM</div>
+
+        <ul class="menu">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#objetivos">Objetivos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <h2>Olá, eu sou</h2>
+        <h1>Miguel Manzano</h1>
+
+        <p>
+          Desenvolvedor Front-End em evolução 🚀
+          apaixonado por programação, futebol e criação de sistemas.
+          Atualmente estudando HTML, CSS e JavaScript para me tornar
+          um desenvolvedor Full Stack.
+        </p>
+
+        <div class="buttons">
+          <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+          <a href="#contato" class="btn btn-secondary">Contato</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Programador">
+      </div>
+
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container">
+      <h2 class="section-title">Sobre Mim</h2>
+
+      <p>
+        Tenho 15 anos e estou focado em aprender desenvolvimento web.
+        Meu objetivo é criar sites profissionais, aplicativos e sistemas completos.
+        Também gosto de futebol, MTA:SA e tecnologia.
+      </p>
+    </div>
+  </section>
+
+  <section id="habilidades">
+    <div class="container">
+      <h2 class="section-title">Habilidades</h2>
+
+      <div class="skills-grid">
+
+        <div class="card">
+          <div class="skill-top">
+            <h3>HTML</h3>
+            <span>80%</span>
+          </div>
+          <div class="progress">
+            <span style="width: 80%"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="skill-top">
+            <h3>CSS</h3>
+            <span>70%</span>
+          </div>
+          <div class="progress">
+            <span style="width: 70%"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="skill-top">
+            <h3>JavaScript</h3>
+            <span>35%</span>
+          </div>
+          <div class="progress">
+            <span style="width: 35%"></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="skill-top">
+            <h3>MTA:SA Lua</h3>
+            <span>65%</span>
+          </div>
+          <div class="progress">
+            <span style="width: 65%"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="container">
+      <h2 class="section-title">Projetos</h2>
+
+      <div class="projects-grid">
+
+        <div class="card project-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Projeto">
+          <h3>Projeto Cordel</h3>
+          <p>Site inspirado em literatura de cordel com efeito parallax e design moderno.</p>
+          <a href="#">Ver Projeto</a>
+        </div>
+
+        <div class="card project-card">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Projeto">
+          <h3>Tela de Login</h3>
+          <p>Tela moderna e responsiva criada usando HTML e CSS.</p>
+          <a href="#">Ver Projeto</a>
+        </div>
+
+        <div class="card project-card">
+          <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200&auto=format&fit=crop" alt="Projeto">
+          <h3>Site de Futebol</h3>
+          <p>Projeto sobre futebol com tabela, notícias e próximos jogos.</p>
+          <a href="#">Ver Projeto</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="objetivos">
+    <div class="container">
+      <h2 class="section-title">Objetivos</h2>
+
+      <div class="goals-grid">
+
+        <div class="card goal-item">
+          <h3>Aprender React</h3>
+          <p>Dominar front-end moderno.</p>
+        </div>
+
+        <div class="card goal-item">
+          <h3>Criar Apps</h3>
+          <p>Mobile e Desktop.</p>
+        </div>
+
+        <div class="card goal-item">
+          <h3>Virar Full Stack</h3>
+          <p>Criar sistemas completos.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="container">
+      <h2 class="section-title">Contato</h2>
+
+      <p>Vamos conversar? Me encontre nas redes abaixo.</p>
+
+      <div class="socials">
+        <a href="#">GitHub</a>
+        <a href="#">Instagram</a>
+        <a href="#">Discord</a>
+        <a href="#">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Miguel Manzano — Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
